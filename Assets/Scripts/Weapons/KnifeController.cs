@@ -11,7 +11,6 @@ public class KnifeController : WeaponController
     {
         base.Attack();
         GameObject spawnedKnife = Instantiate(prefab);
-        spawnedKnife.transform.position = transform.position;
+        spawnedKnife.transform.position = transform.position; // Assign the position to be the same as this object which is parented to the player
     }
-
 }
