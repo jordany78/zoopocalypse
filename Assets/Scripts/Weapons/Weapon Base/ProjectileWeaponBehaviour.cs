@@ -1,10 +1,28 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ProjectileWeaponBehaviour : MonoBehaviour
 {
     public WeaponScriptableObject weaponData;
     protected Vector3 direction;
     public float destroyAfterSeconds;
+
+    //Current stats
+    protected float currentDamage;
+    protected float currentSpeed;
+    protected float currentCooldownDuration;
+    protected int currentPierce;
+
+    // track enemies already hit by this projectile to avoid double-damage
+    private HashSet<int> hitEnemyInstanceIds = new HashSet<int>();
+
+    void Awake()
+    {
+        currentDamage = weaponData.Damage;
+        currentSpeed = weaponData.Speed;
+        currentCooldownDuration = weaponData.CooldownDuration;
+        currentPierce = weaponData.Pierce;
+    }
     protected virtual void Start()
     {
         Destroy(gameObject, destroyAfterSeconds);
@@ -57,5 +75,32 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 
         transform.localScale = scale;
         transform.rotation = Quaternion.Euler(rotation);
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.CompareTag("Enemy"))
+        {
+            EnemyStats enemy = col.GetComponent<EnemyStats>();
+            if (enemy == null) return;
+
+            int id = enemy.GetInstanceID();
+            // If we've already hit this enemy with this projectile, ignore
+            if (hitEnemyInstanceIds.Contains(id))
+                return;
+
+            hitEnemyInstanceIds.Add(id);
+
+            Debug.Log($"Projectile {name} hit {enemy.name} for {currentDamage} damage.");
+
+            enemy.TakeDamage(currentDamage);
+
+            // Handle pierce: decrement and destroy when exhausted
+            currentPierce--;
+            if (currentPierce <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
