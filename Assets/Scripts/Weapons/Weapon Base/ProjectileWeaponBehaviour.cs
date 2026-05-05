@@ -94,13 +94,16 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
             Debug.Log($"Projectile {name} hit {enemy.name} for {currentDamage} damage.");
 
             enemy.TakeDamage(currentDamage);
+            ReducePierce();
+        }
+    }
 
-            // Handle pierce: decrement and destroy when exhausted
-            currentPierce--;
-            if (currentPierce <= 0)
-            {
-                Destroy(gameObject);
-            }
+    void ReducePierce()
+    {
+        currentPierce--;
+        if (currentPierce <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
