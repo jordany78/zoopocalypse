@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MeleeWeaponBehaviour : MonoBehaviour
 {
+    public WeaponScriptableObject weaponData;
 
     public float destroyAfterSeconds;
 
