@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Knife Character
   m_EditorClassIdentifier: Assembly-CSharp::CharacterScriptableObject
   startingWeapon: {fileID: 0}
-  maxHealth: 0
+  maxHealth: 1000
   moveSpeed: 5
   recovery: 0
   might: 0
