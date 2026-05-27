@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 908299871}
   - component: {fileID: 908299872}
   - component: {fileID: 908299873}
+  - component: {fileID: 908299874}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -704,6 +705,18 @@ MonoBehaviour:
   - startLevel: 4
     endLevel: 5
     experienceCapIncrease: 200
+--- !u!114 &908299874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908299865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e08c8cae9b21b44eaee351d8d410cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollector
 --- !u!1 &1178274539
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,6 +831,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5896370758975181290, guid: 88ed1c59a21b12a4394642b1b2b7521a, type: 3}
+      propertyPath: drops.Array.data[0].dropRate
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1644966928583173505, guid: 88ed1c59a21b12a4394642b1b2b7521a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.9325304
